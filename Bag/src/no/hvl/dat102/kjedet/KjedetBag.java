@@ -15,7 +15,10 @@ public class KjedetBag<T> implements BagADT<T> {
 	@Override
 	public void leggTil(T el) {
 		 LinearNode<T> nynode = new LinearNode<T>(el);
-		// a Fyll ut
+		 nynode.setNeste(forste);
+		 forste = nynode;
+		 antall++;
+		 
 
 	}
 
@@ -26,7 +29,13 @@ public class KjedetBag<T> implements BagADT<T> {
 			throw new EmptyCollectionException("bag");
 		LinearNode<T> node = finnNode(el);
 		if (node != null) {
-			// b Fyll ut
+			resultat = node.getElement();
+			
+			T forsteEl = forste.getElement();
+			node.setElement(forsteEl);
+			
+			forste = forste.getNeste();
+			antall--;
 		}
 		return resultat;
 	}
@@ -36,7 +45,12 @@ public class KjedetBag<T> implements BagADT<T> {
 		LinearNode<T> node = null;
 		LinearNode<T> aktuell = forste;
 		for (int soek = 0; soek < antall && !funnet; soek++) {
-			// c Fyll ut
+			if(aktuell.getElement().equals(el)) {
+				funnet = true;
+				node = aktuell;
+			} else {
+				aktuell = aktuell.getNeste();
+			}
 		}
 		return node;
 	}
@@ -87,7 +101,9 @@ public class KjedetBag<T> implements BagADT<T> {
 		int i = 0;
 		LinearNode<T> aktuell = forste;
 		while (aktuell != null) {
-			// d Fyll ut
+			tabell[i]=aktuell.getElement();
+			aktuell = aktuell.getNeste();
+			i++;
 		}
 		return tabell;
 	}
