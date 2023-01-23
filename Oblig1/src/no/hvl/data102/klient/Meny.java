@@ -10,8 +10,9 @@ public class Meny {
 	}
 
 	public void start() {
-		// legg inn en del forhåndsdefinerte filmer
-		// TODO
+		Film terminator = new Film();
+		Film titanic = new Film();
+		Film 
 	}
 
 }

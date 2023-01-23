@@ -20,10 +20,7 @@ public interface FilmarkivADT {
 	  * @param filmnr nr på film som skal slettes 
 	  * @return true dersom filmen ble slettet, false ellers 
 	  */ 
-	 boolean slettFilm(int filmnr); 
-	 
-	  
-	3 
+	 boolean slettFilm(int filmnr);  
 	 
 	/** 
 	  * Søker og henter Filmer med en gitt delstreng i tittelen. 
