@@ -1,4 +1,6 @@
-package no.hvl.data102;
+package no.hvl.data102.klient;
+import no.hvl.data102.adt.*;
+import no.hvl.data102.Film;
 
 public class Meny {
 	private Tekstgrensesnitt tekstgr;
@@ -12,7 +14,7 @@ public class Meny {
 	public void start() {
 		Film terminator = new Film();
 		Film titanic = new Film();
-		Film 
+		Film avatar = new Film();
 	}
 
 }

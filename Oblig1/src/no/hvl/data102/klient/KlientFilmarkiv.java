@@ -1,4 +1,6 @@
 package no.hvl.data102.klient;
+import no.hvl.data102.adt.*;
+import no.hvl.data102.Filmarkiv;
 
 public class KlientFilmarkiv {
 

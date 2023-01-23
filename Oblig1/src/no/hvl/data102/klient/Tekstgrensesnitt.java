@@ -1,4 +1,6 @@
-package no.hvl.data102;
+package no.hvl.data102.klient;
+import no.hvl.data102.adt.FilmarkivADT;
+import no.hvl.data102.Film;
 
 public class Tekstgrensesnitt {
 	// lese opplysningene om en FILM fra tastatur
