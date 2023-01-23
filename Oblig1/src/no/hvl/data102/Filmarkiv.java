@@ -4,8 +4,8 @@ import no.hvl.data102.adt.*;
 
 public class Filmarkiv implements FilmarkivADT {
 
-	Film[] arkiv;
-	int nesteledig;
+	private Film[] arkiv;
+	private int nesteledig;
 
 	public Filmarkiv() {
 	}
@@ -16,7 +16,7 @@ public class Filmarkiv implements FilmarkivADT {
 	}
 
 	public Film finnFilm(int nr) {
-		for (int i = 0; i < arkiv.length; i++) {
+		for (int i = 0; i < nesteledig; i++) {
 			if (arkiv[i].getFilmnr() == nr) {
 				return arkiv[i];
 			}
@@ -49,8 +49,8 @@ public class Filmarkiv implements FilmarkivADT {
 		
 		Film[] filmer = new Film[arkiv.length];
 		int antalltreff = 0;
-		for (int i = 0; i < arkiv.length; i++) {
-			if(arkiv[i].getTittel().substring(0, delstreng.length()-1).equals(delstreng)) {
+		for (int i = 0; i < nesteledig; i++) {
+			if(arkiv[i].getTittel().substring(0, delstreng.length()).equals(delstreng)) {
 				filmer[i]=arkiv[i];
 				antalltreff++;
 			}
@@ -70,7 +70,7 @@ public class Filmarkiv implements FilmarkivADT {
 
 	public int antall(Sjanger sjanger) {
 		int antallisjanger = 0;
-		for(int i = 0; i < arkiv.length; i++) {
+		for(int i = 0; i < nesteledig; i++) {
 			if(arkiv[i].getSjanger()==sjanger) {
 				antallisjanger++;
 			}
@@ -81,7 +81,7 @@ public class Filmarkiv implements FilmarkivADT {
 
 	public int antall() {
 
-		return nesteledig - 1;
+		return nesteledig;
 
 	}
 	

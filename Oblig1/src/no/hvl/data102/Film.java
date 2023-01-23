@@ -94,4 +94,11 @@ public class Film {
 	    Integer temp = filmnr; 
 	    return temp.hashCode(); 
 	} 
+	@Override
+	public String toString() {
+		String utTxt = "Filmnummer: " + filmnr + "\n" + "Filmskaper: " + filmskaper + "\n"
+				+ "Tittel: " + tittel + "\n" + "Lansering: " + lansering + "\n" + "Sjanger: "
+				+ sjanger.toString() + "\n" + "Filmselskap: " + filmselskap;
+		return utTxt;
+	}
 }
