@@ -25,20 +25,22 @@ public class Filmarkiv implements FilmarkivADT {
 	}
 
 	public void leggTilFilm(Film nyFilm) {
-		
-		if(nesteledig == arkiv.length) {
+
+		if (nesteledig == arkiv.length) {
 			utvid();
 		}
-		
+
 		arkiv[nesteledig] = nyFilm;
 		nesteledig++;
 	}
 
 	public boolean slettFilm(int filmnr) {
 		boolean sjekk = true;
-		for (int i = 0; i < arkiv.length; i++) {
+		for (int i = 0; i < nesteledig; i++) {
 			if (arkiv[i].getFilmnr() == filmnr && arkiv[nesteledig - 1] != null) {
 				arkiv[i] = arkiv[nesteledig - 1];
+				arkiv[nesteledig - 1] = null;
+				nesteledig--;
 				return sjekk;
 			}
 		}
@@ -46,21 +48,21 @@ public class Filmarkiv implements FilmarkivADT {
 	}
 
 	public Film[] soekTittel(String delstreng) {
-		
+
 		Film[] filmer = new Film[arkiv.length];
 		int antalltreff = 0;
 		for (int i = 0; i < nesteledig; i++) {
-			if(arkiv[i].getTittel().substring(0, delstreng.length()).equals(delstreng)) {
-				filmer[i]=arkiv[i];
+			if (arkiv[i].getTittel().substring(0, delstreng.length()).equals(delstreng)) {
+				filmer[i] = arkiv[i];
 				antalltreff++;
 			}
 		}
-		
+
 		Film[] tittelsok;
 		tittelsok = new Film[antalltreff];
 		int tittelsokplass = 0;
-		for(int i = 0; i < filmer.length; i++) {
-			if(filmer[i]!=null) {
+		for (int i = 0; i < filmer.length; i++) {
+			if (filmer[i] != null) {
 				tittelsok[tittelsokplass] = filmer[i];
 				tittelsokplass++;
 			}
@@ -70,12 +72,12 @@ public class Filmarkiv implements FilmarkivADT {
 
 	public int antall(Sjanger sjanger) {
 		int antallisjanger = 0;
-		for(int i = 0; i < nesteledig; i++) {
-			if(arkiv[i].getSjanger()==sjanger) {
+		for (int i = 0; i < nesteledig; i++) {
+			if (arkiv[i].getSjanger() == sjanger) {
 				antallisjanger++;
 			}
 		}
-		
+
 		return antallisjanger;
 	}
 
@@ -84,10 +86,10 @@ public class Filmarkiv implements FilmarkivADT {
 		return nesteledig;
 
 	}
-	
+
 	public void utvid() {
-		Film[] nyttarkiv = new Film[arkiv.length*2];
-		for(int i = 0; i < arkiv.length; i++) {
+		Film[] nyttarkiv = new Film[arkiv.length * 2];
+		for (int i = 0; i < arkiv.length; i++) {
 			nyttarkiv[i] = arkiv[i];
 		}
 		arkiv = nyttarkiv;
