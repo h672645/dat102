@@ -31,19 +31,11 @@ public class Filmarkiv2 implements FilmarkivADT {
 
 	public void leggTilFilm(Film nyFilm) {
 
-		if (start == null) {
-			start.setElement(nyFilm);
-			antall++;
-			return;
-		}
-
 		LinearNode<Film> temp = start;
 
-		for (int i = 0; i < antall; i++) {
-			if (temp.getNeste() == null) {
-				temp.setElement(nyFilm);
-			}
-		}
+		temp.setElement(nyFilm);
+		start.setNeste(temp);
+		antall++;
 
 	}
 

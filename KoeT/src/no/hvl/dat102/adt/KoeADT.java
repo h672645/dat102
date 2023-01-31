@@ -5,33 +5,33 @@ import no.hvl.dat102.exceptions.EmptyCollectionException;
 public interface KoeADT<T> {
 	
 	/**
-	 * Legge til et element bak i køen.
+	 * Legge til et element bak i kï¿½en.
 	 * 
-	 * @param element er elementet som blir satt inn i køen
+	 * @param element er elementet som blir satt inn i kï¿½en
 	 */
 	void innKoe(T element);
 
 	/**
-	 * Fjerner og returnerer elementet foran i køen.
+	 * Fjerner og returnerer elementet foran i kï¿½en.
 	 * 
-	 * @return elementet foran i køen
-	 * @exception EmptyCollectionException unntak som kastes hvis køen er tom
+	 * @return elementet foran i kï¿½en
+	 * @exception EmptyCollectionException unntak som kastes hvis kï¿½en er tom
 	 */
 
 	T utKoe();
 
 	/**
-	 * Returnerer elementet foran i køen uten å fjerne det fra køen.
+	 * Returnerer elementet foran i kï¿½en uten ï¿½ fjerne det fra kï¿½en.
 	 * 
-	 * @return elementet foran i køen
-	 * @exception EmptyCollectionException unntak kastes hvis køen allerede er tom
+	 * @return elementet foran i kï¿½en
+	 * @exception EmptyCollectionException unntak kastes hvis kï¿½en allerede er tom
 	 */
 	T foerste();
 
 	/**
-	 * Returnerer sann hvis denne køen ikke inneholder noen elementer.
+	 * Returnerer sann hvis denne kï¿½en ikke inneholder noen elementer.
 	 * 
-	 * @return sann dersom køen er tom ellers usann
+	 * @return sann dersom kï¿½en er tom ellers usann
 	 */
 	boolean erTom();
 
