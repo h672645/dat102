@@ -71,10 +71,14 @@ public class TabellSirkulaerKoe<T> implements KoeADT<T> {
 	
 	public String toString() {
 		String utTxt = "";
+		T[] testKoe = koe;
 		
 		while(erTom()!=true) {
 			utTxt += utKoe().toString() + "\n";
 		}
+		
+		koe = testKoe;
+		
 		return utTxt;
 	}
 }// class
