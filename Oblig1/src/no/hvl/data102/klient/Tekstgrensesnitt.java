@@ -40,9 +40,12 @@ public class Tekstgrensesnitt {
 	// Skriver ut alle Filmer av en produsent / en gruppe
 	public void skrivUtFilmProdusent(FilmarkivADT filma, String delstreng) {
 		String utTxt = "Filmer fra denne produsenten:\n\n";
+		
 		for(int i = 1; i <= filma.antall(); i++) {
+			
 			Film test = filma.finnFilm(i);
 			String filmselskap = test.getFilmselskap();
+			
 			if(filmselskap.substring(0, delstreng.length()).equals(delstreng)) {
 				utTxt += test.toString() + "\n\n";
 			}
