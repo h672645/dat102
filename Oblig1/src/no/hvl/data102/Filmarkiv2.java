@@ -13,95 +13,98 @@ public class Filmarkiv2 implements FilmarkivADT {
 	}
 
 	public Film finnFilm(int nr) {
-		if(start == null) {
+		if (start == null) {
 			return null;
 		}
-		
+
 		LinearNode<Film> temp = start;
-		for(int i = 0; i < antall; i++) {
-			if(start.getElement().getFilmnr()==nr) {
+		for (int i = 0; i < antall; i++) {
+			if (start.getElement().getFilmnr() == nr) {
 				return temp.getElement();
 			} else {
 				temp = temp.getNeste();
 			}
 		}
-		
+
 		return null;
 	}
-	
+
 	public void leggTilFilm(Film nyFilm) {
-		
-		if(start == null) {
+
+		if (start == null) {
 			start.setElement(nyFilm);
 			antall++;
 			return;
 		}
-		
+
 		LinearNode<Film> temp = start;
-		
-		for(int i = 0; i < antall; i++) {
-			if(temp.getNeste()==null) {
+
+		for (int i = 0; i < antall; i++) {
+			if (temp.getNeste() == null) {
 				temp.setElement(nyFilm);
 			}
 		}
-		
+
 	}
 
 	public boolean slettFilm(int filmnr) {
-		
+
 		LinearNode<Film> temp = start;
 		LinearNode<Film> forige = null;
+		boolean sjekk = false;
 
-		while(temp !=null || !(temp.getElement().getFilmnr()==filmnr)) {
+		if(temp == null) {
+			return false;
+		}
+		
+		while (temp.getElement().getFilmnr() != filmnr) {
 			forige = temp;
 			temp = temp.getNeste();
 		}
-		
-		if(temp != null) {
-			if(forige == null) {
-				start = start.getNeste();
-			} else {
-				forige.setNeste(temp.getNeste());
-				temp = null;
-				return true;
-			}
+
+		if (forige == null) {
+			temp = start.getNeste();
+		} else {
+			forige.setNeste(temp.getNeste());
+			temp = null;
+			sjekk = true;
 		}
-		
-		return false;
+
+		return sjekk;
 	}
 
 	public Film[] soekTittel(String delstreng) {
-		
+
 		int antalltreff = 0;
 		LinearNode<Film> temp = start;
-		
-		while(temp != null && temp.getElement().getTittel().substring(0, delstreng.length()).equals(delstreng)){
+
+		while (temp != null && temp.getElement().getTittel().substring(0, delstreng.length()).equals(delstreng)) {
 			antalltreff++;
 		}
-		
+
 		Film[] tittelsok;
 		tittelsok = new Film[antalltreff];
-		
+
 		temp = start;
-		while(temp != null && temp.getElement().getTittel().substring(0, delstreng.length()).equals(delstreng)){
+		while (temp != null && temp.getElement().getTittel().substring(0, delstreng.length()).equals(delstreng)) {
 			antalltreff++;
 		}
-		
+
 		return tittelsok;
 	}
 
 	public int antall(Sjanger sjanger) {
-		
+
 		LinearNode<Film> temp = start;
 		int antallsjanger = 0;
-		while(temp != null && temp.getNeste()!=null) {
-			if(temp.getElement().getSjanger().equals(sjanger)) {
+		while (temp != null && temp.getNeste() != null) {
+			if (temp.getElement().getSjanger().equals(sjanger)) {
 				antallsjanger++;
 			}
 			temp = temp.getNeste();
 		}
-		
-		return antallsjanger; 
+
+		return antallsjanger;
 	}
 
 	public int antall() {
