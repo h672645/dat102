@@ -129,17 +129,4 @@ public abstract class KoeADTTest {
 		assertTrue("".equals(string));
 	}
 
-//	@Test
-//	public void foersteFromEmptyIsUnderflowed() {
-//		/*
-//		 * Assertions.assertThrows(EmptyCollectionException.class, new Executable() {
-//		 * 
-//		 * @Override public void execute() throws Throwable { stabel.pop(); } });
-//		 */
-//
-//		Assertions.assertThrows(EmptyCollectionException.class, () -> {
-//			koe.foerste();
-//		});
-//	}
-
 }

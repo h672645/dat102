@@ -68,4 +68,13 @@ public class TabellSirkulaerKoe<T> implements KoeADT<T> {
 		bak = gmlLengde - 2;
 		koe = hjelpetabell;
 	}
+	
+	public String toString() {
+		String utTxt = "";
+		
+		while(erTom()!=true) {
+			utTxt += utKoe().toString() + "\n";
+		}
+		return utTxt;
+	}
 }// class
