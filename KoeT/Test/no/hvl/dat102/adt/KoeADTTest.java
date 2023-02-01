@@ -17,13 +17,13 @@ import no.hvl.dat102.exceptions.EmptyCollectionException;
 import no.hvl.dat102.adt.KoeADT;
 
 /**
- * Test for StabelADT.
+ * Test for KoeADT.
  * 
- * @author Ole Olsen
+ * @author TBD
  */
 public abstract class KoeADTTest {
 
-	// Referanse til stabel
+	// Referanse til Koe
 	private KoeADT<Integer> koe;
 
 	// Testdata
@@ -36,7 +36,7 @@ public abstract class KoeADTTest {
 	protected abstract KoeADT<Integer> reset();
 
 	/**
-	 * Hent en ny stabel for hver test.
+	 * Hent en ny koe for hver test.
 	 * 
 	 * @return
 	 */
@@ -45,18 +45,28 @@ public abstract class KoeADTTest {
 		koe = reset();
 	}
 
+	/*
+	 * Tester om koen er tom.
+	 */
 	@Test
-	public void testErTom() {
+	public void testErIkkeTom() {
 		koe.innKoe(e0);
 		koe.innKoe(e1);
 		assertFalse(koe.erTom());
 	}
 
+	/*
+	 * Tester om koen ikke er tom.
+	 */
 	@Test
-	public void testErIkkeTom() {
+	public void testErTom() {
 		assertTrue(koe.erTom());
 	}
 
+	/*
+	 * Tester om foerste plass i 
+	 * koen er null-referanse.
+	 */
 	@Test
 	public void testFoersteErNull() {
 		String foersteException = "koe";
@@ -70,12 +80,19 @@ public abstract class KoeADTTest {
 		}
 	}
 
+	/*
+	 * Tester at foerste plass i koen har 
+	 * en referanse.
+	 */
 	@Test
 	public void testFoerste() {
 		koe.innKoe(e0);
 		assertTrue(koe.foerste() != null);
 	}
 
+	/*
+	 * Teste at noe blir lagt til i koen.
+	 */
 	@Test
 	public void testInnKoe() {
 
@@ -83,6 +100,9 @@ public abstract class KoeADTTest {
 		assertTrue(!koe.erTom());
 	}
 
+	/*
+	 * Tester at noe blir tatt ut foerst i koen.
+	 */
 	@Test
 	public void testUtKoe() {
 		koe.innKoe(e0);
@@ -97,6 +117,11 @@ public abstract class KoeADTTest {
 		assertTrue(element == e2);
 	}
 
+	/*
+	 * Tester om koen returnerer en 
+	 * EmptyCollectionException "e" 
+	 * dersom den er tom.
+	 */
 	@Test
 	public void testUtKoeErTom() {
 		String utKoeException = "koe";
@@ -104,12 +129,16 @@ public abstract class KoeADTTest {
 		try {
 			koe.utKoe();
 		} catch (EmptyCollectionException e) {
-			if(utKoeException.equals(e.getMessage())) {
+			if(koe.erTom() && utKoeException.equals(e.getMessage())) {
 				assertTrue(true);
 			}
 		}
 	}
 	
+	/*
+	 * Tester at toString metoden skriver ut i
+	 * samme format.
+	 */
 	@Test
 	public void testToString() {
 		String test = e0 + "\n" + e1 + "\n" + e2 + "\n"
@@ -120,13 +149,17 @@ public abstract class KoeADTTest {
 		koe.innKoe(e3);
 		koe.innKoe(e4);
 		String string = koe.toString();
+		
 		assertTrue(test.equals(string));
 	}
 	
+	/*
+	 * Teste om tostring metoden skriver ut den
+	 * tomme "" verdien dersom koen er tom.
+	 */
 	@Test
 	public void testToStringErTom() {
 		String string = koe.toString();
-		assertTrue("".equals(string));
+		assertTrue(koe.erTom() && "".equals(string));
 	}
-
 }
