@@ -63,17 +63,13 @@ public class Tekstgrensesnitt {
 	public void skrivUtStatistikk(FilmarkivADT filma) {
 		int antall = filma.antall();
 		String utTxt = "Antall filmer: " + antall + "\n";
-		antall = filma.antall(Sjanger.HORROR);
-		utTxt += "Antall Filmer i sjanger HORROR: " + antall + "\n";
-		antall = filma.antall(Sjanger.ROMANCE);
-		utTxt += "Antall Filmer i sjanger ROMANCE: " + antall + "\n";
-		antall = filma.antall(Sjanger.COMEDY);
-		utTxt += "Antall Filmer i sjanger COMDEY: " + antall + "\n";
-		antall = filma.antall(Sjanger.THRILLER);
-		utTxt += "Antall Filmer i sjanger THRILLER: " + antall + "\n";
-		antall = filma.antall(Sjanger.ACTION);
-		utTxt += "Antall Filmer i sjanger ACTION: " + antall + "\n";
-
+		
+		for(Sjanger sj : Sjanger.values()) {
+			utTxt += "Antall filmer i sjanger: " + sj + " " + 
+		+ filma.antall(sj) + "\n";
+		}
+		
+		
 		showMessageDialog(null, utTxt);
 	}
 
