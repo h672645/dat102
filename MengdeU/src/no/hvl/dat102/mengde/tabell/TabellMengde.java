@@ -131,7 +131,6 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	public boolean equals(Object m2) {
 		//TODO
 		boolean likeMengder = true;
-		T element;
 		
 		if(tab == null) {
 			return false;
