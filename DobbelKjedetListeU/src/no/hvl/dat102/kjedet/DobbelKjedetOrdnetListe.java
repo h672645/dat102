@@ -9,16 +9,23 @@ public class DobbelKjedetOrdnetListe<T extends Comparable<T>> implements DobbelK
 	private int antall;
 
 	public DobbelKjedetOrdnetListe(T minVerdi, T maksVerdi) {
-		// Første node
-		//TODO
-		// Siste node
-		//TODO
-		// Kjeding
-		//TODO
+		
+		DobbelNode<T> first = new DobbelNode<T>();
+		DobbelNode<T> last = new DobbelNode<T>();
+		first.setElement(minVerdi);
+		first.setNeste(last);
+		last.setElement(maksVerdi);
+		last.setForrige(first);
+		foerste = first;
+		siste = last;
 	}
 
 	@Override
 	public void leggTil(T el) {
+		if(finn(el)!=null) {
+			return;
+		}
+		
 		DobbelNode<T> nyNode = new DobbelNode<T>(el);
 		DobbelNode<T> aktuell = foerste.getNeste();
 		while ((el.compareTo(aktuell.getElement()) > 0)) {
@@ -55,9 +62,21 @@ public class DobbelKjedetOrdnetListe<T extends Comparable<T>> implements DobbelK
 	 * null-referansen
 	 */
 	private DobbelNode<T> finn(T el) {
-		return null;
-		//TODO
-
+	
+		DobbelNode<T> aktuell = foerste;
+		DobbelNode<T> funnet = null;
+		
+		while(aktuell.getNeste() != null) {
+			
+			if(aktuell.getElement().equals(el)) {
+				funnet = aktuell;
+			}
+			
+			aktuell = aktuell.getNeste();
+		}
+		
+		return funnet;
+		
 	}
 
 	@Override
@@ -68,6 +87,27 @@ public class DobbelKjedetOrdnetListe<T extends Comparable<T>> implements DobbelK
 	@Override
 	public int antall() {
 		return antall;
+	}
+	
+	public String visListe() {
+		
+		if(foerste.getNeste()==null) {
+			System.out.println("Ingen element i listen");
+		}
+		
+		DobbelNode<T> aktuell = foerste.getNeste();
+		String txt = "Innhold i nodene: {";
+		
+		while(aktuell!= null && aktuell != siste) {
+			if(aktuell.getNeste() == siste) {
+				txt += aktuell.getElement().toString();
+			} else {
+				txt += aktuell.getElement().toString() + ",";
+			}
+			
+			aktuell = aktuell.getNeste();
+		}
+		return txt += "}\n";
 	}
 
 	public String toString() {

@@ -143,7 +143,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 		}
 		boolean likeMengder = true;
 		MengdeADT<T> m2 = (KjedetMengde<T>) ny;
-		if (this.antall != m2.antall()) {
+		if (this.antall != ((KjedetMengde<T>)m2).antall()) {
 			likeMengder = false;
 		} else {
 			Iterator<T> teller = m2.iterator();
@@ -193,50 +193,67 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public MengdeADT<T> snitt(MengdeADT<T> m2) {
-		// TODO
-		MengdeADT<T> snittM = new KjedetMengde<T>();
 		
-		Iterator<T> mTo = m2.iterator();
+		MengdeADT<T> snittAvMengder = new KjedetMengde<T>();
 		
-		if(start == null) {
+		LinearNode<T> aktuell = start;
+		
+		if(aktuell == null) {
 			return null;
 		}
-		while(start.getNeste()!=null) {
+		
+		while(aktuell!=null) {
 			
-			if()
+			if(((KjedetMengde<T>)m2).inneholder(aktuell.getElement())){
+				((KjedetMengde<T>)snittAvMengder).leggTil(aktuell.getElement());
+			}
+			
+			aktuell = aktuell.getNeste();
 		}
 		
-		
-		
-		
-		
-		
-		/*
-		 * ..
-		 * 
-		 * if (this.inneholder(element)) ((KjedetMengde<T>) snittM).settInn(element);
-		 */
-		return snittM;
+		return snittAvMengder;
 	}
 
 	@Override
 	public MengdeADT<T> differens(MengdeADT<T> m2) {
 		// TODO
 		MengdeADT<T> differensM = new KjedetMengde<T>();
-		T element;
-		/*
-		 * Fyll ut
-		 * 
-		 */
+		LinearNode<T> aktuell = start;
+		
+		if(aktuell == null) {
+			return null;
+		}
+		
+		while(aktuell != null) {
+			
+			if(!((KjedetMengde<T>)m2).inneholder(aktuell.getElement())){
+				((KjedetMengde<T>)differensM).leggTil(aktuell.getElement());
+			}
+			
+			aktuell = aktuell.getNeste();
+		}
 
 		return differensM;
 	}
 
 	@Override
 	public boolean undermengde(MengdeADT<T> m2) {
-		// TODO
+		
 		boolean erUnderMengde = true;
-		// ...
+		Iterator<T> mTo = m2.iterator();
+		T element = null;
+
+		if(this.antall <= ((KjedetMengde<T>)m2).antall()) {
+			return false;
+		} 
+		
+		while(mTo.hasNext()) {
+			element = mTo.next();
+			if(!this.inneholder(element)) {
+				return false;
+			}
+		}
+		
 		return erUnderMengde;
 	}
 
@@ -250,6 +267,22 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 		nyNode.setNeste(start);
 		start = nyNode;
 		antall++;
+	}
+	
+	@Override
+	public String toString() {
+		
+		String txt = "{";
+		LinearNode<T> aktuell = start;
+		
+		while(aktuell != null) {
+			txt += aktuell.getElement().toString() + ",";
+			aktuell = aktuell.getNeste();
+		}
+		
+		txt += "}";
+		
+		return txt;
 	}
 
 }// class

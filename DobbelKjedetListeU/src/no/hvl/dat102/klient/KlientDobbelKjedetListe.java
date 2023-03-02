@@ -5,15 +5,18 @@ import no.hvl.dat102.kjedet.DobbelKjedetOrdnetListe;
 public class KlientDobbelKjedetListe {
 
 	public static void main(String[] args) {
-		String ord[] = { "o", "a", "s", "m", "e", "k", "c" };
+		String ord[] = { "a", "o", "a", "s", "m", "e", "k", "c" };
 
 		DobbelKjedetOrdnetListe<String> liste = new DobbelKjedetOrdnetListe(new String("AAA"), new String("zzz"));
-		// Klienten bør sjekke på at alle verdiene ligger innenfor grensene
+		// Klienten bï¿½r sjekke pï¿½ at alle verdiene ligger innenfor grensene
 		// Legger data inn i listen
 		for (int i = 0; i < ord.length; i++) {
 			liste.leggTil(ord[i]);
 
 		}
+		
+		System.out.println(liste.visListe());
+		
 		// Utskrift foran
 		System.out.println(liste);
 

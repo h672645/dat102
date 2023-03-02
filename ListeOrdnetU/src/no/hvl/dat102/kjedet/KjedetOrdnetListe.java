@@ -25,9 +25,12 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ...Fyll ut
-		return resultat;
+		T resultat = foerste.getElement();
+		foerste.setElement(null);
+		
+		foerste = foerste.getNeste();
+		antall--;
+		return resultat;	
 	}
 
 	@Override
@@ -35,8 +38,22 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ...Fyll ut
+		T resultat = siste.getElement();
+		LinearNode<T> aktuell = foerste;
+		
+		while(aktuell != null) {
+			
+			if(aktuell.getNeste() == siste) {
+				
+				siste.setElement(null);
+				aktuell.setNeste(null);
+				siste = aktuell;
+			}
+			
+			aktuell.getNeste();
+		}
+		
+		antall--;
 		return resultat;
 	}
 
@@ -73,7 +90,13 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 	@Override
 	public void leggTil(T element) {
 
-		// ...Fyll ut
+		LinearNode<T> ny = new LinearNode<T>();
+		ny.setElement(element);
+		
+		ny.setNeste(foerste);
+		foerste = ny;
+		antall++;
+		
 	}
 
 	@Override
@@ -87,7 +110,7 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (denne != null && element.equals(denne.getElement())) { // funnet
 			antall--;
 			svar = denne.getElement();
-			if (forrige == null) { // Første element
+			if (forrige == null) { // Fï¿½rste element
 				foerste = foerste.getNeste();
 				if (foerste == null) { // Tom liste
 					siste = null;
@@ -115,6 +138,19 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 			}
 		} // ikke-funn
 		return resultat;
+	}
+	
+	public String toString() {
+		
+		LinearNode<T> aktuell = foerste;
+		String txt = "KjedetOrdnetListe: \n";
+		
+		while(aktuell != null) {
+			
+			txt += aktuell.getElement().toString() + "\n";
+			aktuell = aktuell.getNeste();
+		}
+		return txt;
 	}
 
 }// class
